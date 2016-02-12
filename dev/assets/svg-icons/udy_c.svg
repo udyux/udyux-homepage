@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512">
+    <desc iVinci="yes" version="4.6" gridStep="10" showGrid="no" snapToGrid="no" codePlatform="0"/>
+    <g id="Layer1" name="Layer 1" opacity="1">
+        <g id="Shape1">
+            <desc shapeID="1" type="0" basicInfo-basicType="1" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-186,-198.5,372,397)" text="" font-familyName="Helvetica" font-pixelSize="20" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1.26764,0,0,1.18781,256.281,256.281)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="box" d="M20.5001,20.5001 L492.062,20.5001 L492.062,492.062 L20.5001,492.062 L20.5001,20.5001 Z" style="stroke:#2a2b2c;stroke-opacity:1;stroke-width:40;stroke-linejoin:miter;stroke-miterlimit:2;stroke-linecap:round;fill-rule:evenodd;fill:#f9fcf9;fill-opacity:1;"/>
+        </g>
+        <g id="Shape2">
+            <desc shapeID="2" type="0" basicInfo-basicType="0" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-63.0004,-71.4998,126.001,143)" text="U" font-familyName="Muller" font-pixelSize="200" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1.30559,0,0,1.29592,154.01,154.164)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="u" d="M187.955,61.5055 L187.955,171.141 C187.955,195.504 174.637,204.057 154.009,204.057 C133.381,204.057 120.064,195.504 120.064,171.141 L120.064,61.5055 L71.7568,61.5055 L71.7568,173.732 C71.7568,228.42 113.536,246.822 154.009,246.822 C194.483,246.822 236.262,228.42 236.262,173.732 L236.262,61.5055 L187.955,61.5055 Z" style="stroke:none;fill-rule:evenodd;fill:#2a2b2c;fill-opacity:1;"/>
+        </g>
+        <g id="Shape3">
+            <desc shapeID="3" type="0" basicInfo-basicType="0" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-71.6002,-69.9998,143.2,140)" text="X" font-familyName="Muller" font-pixelSize="200" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1.28857,0,0,1.32369,348.543,154.164)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="x" d="M311.948,246.822 L348.543,184.609 L385.138,246.822 L440.805,246.822 L378.954,150.457 L436.939,61.5055 L381.273,61.5055 L348.543,116.042 L315.814,61.5055 L260.147,61.5055 L318.132,150.457 L256.281,246.822 L311.948,246.822 Z" style="stroke:none;fill-rule:evenodd;fill:#e2706a;fill-opacity:1;"/>
+        </g>
+        <g id="Shape4">
+            <desc shapeID="4" type="0" basicInfo-basicType="0" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-64.4999,-70.0002,129,140)" text="D" font-familyName="Muller" font-pixelSize="200" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1.27524,0,0,1.31803,154.01,358.794)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="d" d="M71.7568,266.532 L71.7568,451.056 L142.914,451.056 C206.677,451.056 236.262,412.57 236.262,358.794 C236.262,305.019 206.677,266.532 142.914,266.532 L71.7568,266.532 M187.803,358.794 C187.803,393.327 171.225,408.879 142.914,408.879 L118.941,408.879 L118.941,308.709 L142.914,308.709 C171.225,308.709 187.803,324.262 187.803,358.794 Z" style="stroke:none;fill-rule:evenodd;fill:#2a2b2c;fill-opacity:1;"/>
+        </g>
+        <g id="Shape5">
+            <desc shapeID="5" type="0" basicInfo-basicType="0" basicInfo-roundedRectRadius="12" basicInfo-polygonSides="6" basicInfo-starPoints="5" bounding="rect(-73.0004,-70.0002,146.001,140)" text="Y" font-familyName="Muller" font-pixelSize="200" font-bold="0" font-underline="0" font-alignment="1" strokeStyle="0" markerStart="0" markerEnd="0" shadowEnabled="0" shadowOffsetX="0" shadowOffsetY="2" shadowBlur="4" shadowOpacity="160" blurEnabled="0" blurRadius="4" transform="matrix(1.26386,0,0,1.31803,348.543,358.794)" pers-center="0,0" pers-size="0,0" pers-start="0,0" pers-end="0,0" locked="0" mesh="" flag=""/>
+            <path id="y" d="M371.798,451.056 L371.798,388.055 L440.805,266.532 L387.723,266.532 L348.543,342.714 L309.363,266.532 L256.281,266.532 L325.288,388.055 L325.288,451.056 L371.798,451.056 Z" style="stroke:none;fill-rule:evenodd;fill:#2a2b2c;fill-opacity:1;"/>
+        </g>
+    </g>
+</svg>

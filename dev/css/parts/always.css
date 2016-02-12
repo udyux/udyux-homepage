@@ -1,0 +1,37 @@
+/*-------------∞
+|  always.css  |
+∞-------------*/
+
+button {cursor: pointer}
+.flex-br {size: 100% 0}
+
+svg.icon {
+	width: 100%;
+	height: 100%;
+}
+
+
+ins.lg,
+ins.md,
+ins.sm {display: none}
+
+ins.br::after,
+del.br::after {
+	content: '\A';
+	white-space: pre-wrap;
+}
+
+@media (--lg) {
+	del.lg {display: none}
+	ins.lg {display: inline}
+}
+
+@media (--md) {
+	del.md {display: none}
+	ins.md {display: inline}
+}
+
+@media (--sm) {
+	del.sm {display: none}
+	ins.sm {display: inline}
+}
