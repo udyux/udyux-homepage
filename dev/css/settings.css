@@ -6,7 +6,9 @@
 			white: #f9fcf9;
 			grey: #a6a6a6;
 			black: #2a2b2c;
-			blue: #456990;
+			wedgewood: #456990;
+			sunglo: #e2706a;
+			glade: #b8c57c;
 		}
 	/*
 //
@@ -19,15 +21,10 @@
 		}
 	/*
 //
-/**/body{typeface: light 17px grey}
-		h1 {typeface: thin 42px white}
-		h2 {typeface: thin 34px}
-		h3 {typeface: thin 28px}
-		h4 {typeface: thin 26px}
-		h5 {typeface: light 18px}
-		h6 {typeface: regular 17px}
-		p, ul {line-height: 1.3}
-		b {font-family: regular}
+/**/body{typeface: light 18px}
+		p {line-height: 1.3}
+		b {font-family: bold}
+		a::before {bg-color: wedgewood}
  	/*
 //
 */

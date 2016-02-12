@@ -1,3 +1,68 @@
 /*-----------∞
 |  main.css  |
 ∞-----------*/
+
+body {colors: white black}
+a {font-family: bold}
+em {color: sunglo}
+u {
+	color: glade;
+	text-decoration: none;
+}
+
+/* ∞∞ content ∞∞ */
+	main {
+		padding: 75px 125px;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		output {
+			display: block;
+			margin-bottom: 10px;
+			&:last-child {
+				display: inline-block;
+				div {
+					animation: blink 750ms infinite;
+					display: inline-block;
+					bg-color: white;
+				}
+			}
+			div {display: none;}
+			&._line {margin-left: 160px}
+		}
+		pre {
+			display: inline-block;
+			font-family: inherit;
+			font-size: inherit;
+			font-style: inherit;
+			div {
+				animation: blink 750ms infinite;
+				display: inline-block;
+				bg-color: white;
+			}
+		}
+	}
+
+	section {
+		size: 0;
+		fixed: top 50% left 50%;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+/* ∞∞ keyframes */
+	@keyframes blink {
+  	0% {
+    	opacity: 1;
+  	}
+  	50% {
+  		opacity: 0;
+  	}
+  	100% {
+    	opacity: 1;
+  	}
+	}
+
+/* ∞∞ media queries ∞∞ */
+	@media (max-width:415px) {
+
+	}
