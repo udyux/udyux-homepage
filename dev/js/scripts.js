@@ -5,144 +5,146 @@
 require Prevent.js
 
 var Bash = (function() {
-	var shell = $('#shell');
-	var returnLine = '<output><em>Udy-UX</em><b>:~</b>&nbsp;<u>bash$</u>&nbsp;<span></span><div>&nbsp;</div></output>';
-	var newLine = '<output class="_line"><span></span><div>&nbsp;</div></output>';
-	var line = 0;
-	var type = 0;
-	
-	var output;
-	var text;
-	var lang;
+	var State = (function() {
+		var store = {};
 
-	var initializing = setInterval(function() {
-		shell.echo('.');
-	},250);
-
-	var init = function() {
-		var Load = [
-			'<output><u>Connection established</u> <a href="mailto:nicolas@udy.io">nicolas@udy.io</a></output>',
-			'<output>Last connection: <b>' + new Date() + '</b> on <b>' + navigator.userAgent.split('/')[3].split(' ')[1] + '</b></output>',
-			'<output>Checking UA Language preferences</output>'
-		];
-		setTimeout(function() {
-			clearInterval(initializing);
-			for (i = 0; i < Load.length; i++) shell.append(Load[i]);
-			setTimeout(checkLang,600);
-		},1750);
-	};
-
-	var checkLang = function() {
-		$.ajax({
-			url: '/xphp/ua_lang.php',
-			type: 'POST'
-		})
-		.done(function(ua) {
-			lang = (!ua || ua !== 'fr') ? 'en' : ua;
-			shell.append('<output><b>load</b> [ <em>lang</em> => <u>' + lang + '</u> ]</output>');
-			$.get('./content/output_' + lang + '.html', function(data) {
-				output = data.trim().split('\n');
-				setTimeout(requestNewLine,600);
-			});
-		});
-	};
-
-	var requestNewLine = function() {
-		setTimeout(function() {
-			if (line < output.length) {
-				type = 0;
-				text = output[line];
-				if (text[0] !== '<') {
-					shell.append(returnLine);
-					setTimeout(typeLine,375);
+		var request = {
+			model: function(model) {
+				store.model = model;
+				store.n = -1;
+				store.link = 0;
+				store.form = 0;
+				Control.data.config();
+			},
+			connection: function() {
+				var now = new Date();
+				var ua = navigator.userAgent.split('/')[3].split(' ')[1];
+				var last = store.model.connection.last.replace(/#date/, now);
+				var lastConnection = last.replace(/#ua/, ua);
+				return [store.model.connection.established, lastConnection];
+			},
+			uaLang: function(lang) {
+				var prefLang = store.model.connection.lang.replace(/#lang/, lang);
+				store.text = store.model.lines[lang];
+				return prefLang;
+			},
+			newLine: function() {
+				if (store.n+1 === store.text.length) {
+					return false;
 				} else {
-					setTimeout(printLine,375);
+					store.n++;
+					return store.model.newline;
+				}
+			},
+			nextChar: function() {
+				var i = store.n;
+				var str = store.text[i];
+				var ltr = str[0];
+				store.text[i] = str.replace(/./, '');
+				return ltr;
+			},
+			nextLink: function() {
+				var i = store.link;
+				store.link++;
+				return store.model.links[i];
+			},
+			form: function() {
+				var forms = store.model.forms;
+				Control.data.forms(forms);
+			}
+		};
+
+		return {
+			request: request
+		};
+	})();
+
+	var Shell = (function() {
+		var echo = function(str) {
+			$('#shell').append(str);
+			Control.data.parse();
+		};
+
+		var print = function(str) {
+			var keyTime = Random.number(40,100);
+			setTimeout(function() {
+				$('.output').last().append(str);
+				Control.data.parse();
+			},keyTime);
+		};
+
+		return {
+			echo: echo,
+			print: print
+		};
+	})();
+
+	var Control = (function() {
+		var launch = function() {
+			var n = Math.floor($(window).height()/6);
+			for (i = 0; i < n; i++) {
+				$('#switch').append('<div></div><div></div>');
+				if (i+1 === n) {
+					$('#switch').addState('on');
+					setTimeout(data.load,1500);
+				}
+			}
+		};
+
+		var data = {
+			load: function() {
+				var initializing = setInterval(function() {
+					$('#shell').append('<output>Initializing <b><em>http://udy.io</em></b><span></span></output>');
+					$('#shell output span').append('.');
+				},250);
+
+				$.getJSON('src/output.json', function(json) {
+					clearInterval(initializing);
+					$('#switch').remove();
+					State.request.model(json);
+				});
+			},
+			config: function() {
+				$.get('lib/php/ua_lang.php', function(lang) {
+					var connection = State.request.connection();
+					var uaLang = State.request.uaLang(lang);
+					var newLine = State.request.newLine();
+					$('#shell').append(connection);
+					$('#shell').append(uaLang);
+					Shell.echo(newLine);
+				});
+			},
+			parse: function() {
+				var nextChar = State.request.nextChar();
+				switch (nextChar) {
+					case ';':
+						var newLine = State.request.newLine();
+						if (!newLine) {
+							State.request.form();
+						} else {
+							Shell.echo(newLine);
+						}
+						break;
+					case '#':
+						var link = State.request.nextLink();
+						Shell.print(link);
+						break;
+					default:
+						Shell.print(nextChar);
 				}
 				$('html,body').scrollTop($('html,body').prop('scrollHeight'));
-				line++;
-			} else {
-				shell.addState('done');
+			},
+			forms: function(forms) {
+				for (i = 0; i < forms.length; i++) {
+					$('body').append(forms[i]);
+				}
 			}
-		},450);
-	};
+		};
 
-	var printLine = function() {
-		shell.append(newLine);
-		shell.echo(text);
-		requestNewLine();
-	};
+		setTimeout(launch,1000);
 
-	var typeLine = function() {
-		if (type < text.length) {
-			typeLetter(text[type]);
-		} else {
-			requestNewLine();
-		}
-	};
-
-	var typeLetter = function(letter) {
-		var typeV = Random.number(40,100);
-		setTimeout(function() {
-			shell.echo(letter);
-			type++;
-			typeLine();
-		},typeV);
-	};
-
-	return init();
-})();
-
-
-var Contact = (function() {
-	var shell = $('#shell');
-	var i = 0;
-
-	var init = function() {
-		if (shell.hasState('done')) {
-			shell.removeState('done');
-			$('.contact').eq(i).focus();
-		}
-	};
-
-	var detect = function() {
-		if (!$('.contact').eq(i).hasState('focused')) {
-			var form = ['Your email','&nbsp;Your name','&nbsp;&nbsp;&nbsp;Subject'];
-			$('.contact').eq(i).addState('focused');
-			shell.append('<output><b>' + form[i] + '</b> <=[ <span class="bash-input"></span><div>&nbsp;</div></output>');
-			$('html,body').scrollTop($('html,body').prop('scrollHeight'));
-		}
-	};
-	
-	var mirror = function() {
-		$('.bash-input').eq(i).html($(this).val());
-	};
-	
-	var done = function() {
-		i++;
-		if (i < $('.contact').length) {
-			$('.contact').eq(i).focus();
-		} else {
-			$('textarea').focus();
-		}
-	};
-
-	var startMsg = function() {
-		if (!$('#msgMirror').length) {
-			shell.append('<div id="msgMirror"><b>&nbsp;&nbsp;&nbsp;Message</b> <=[ <span><pre class="bash-input"><div>&nbsp;</div></pre></span></div>');
-		}
-	};
-
-	var msgMirror = function() {
-		$('pre').html($('textarea').val() + '<div>&nbsp;</div>');
-		$('html,body').scrollTop($('body').prop('scrollHeight'));
-	};
-
-	attachHandlers([
-		['body','keydown',init],
-		['.contact','focus',detect],
-		['textarea','focus',startMsg],
-		['.contact','keyup',mirror],
-		['textarea','keyup',msgMirror],
-		['button','click',done]
-	]);
+		return {
+			data: data
+		};
+	})();
 })();

@@ -105,12 +105,24 @@ var plumberErrorHandler = {
 
 
 // ----- src
-	gulp.task('src', function() {
+	gulp.task('src:markup', function() {
 		return gulp.src('./dev/src/**/+(*.html|*.php)')
 			.pipe(inject.afterEach('<i>', '<svg class="icon"><use xlink:href="assets/icons.svg#'))
 			.pipe(inject.beforeEach('</i>', '"></use></svg>'))
 			.pipe(gulp.dest('./build/src/'));
 	});
+
+	gulp.task('src:data', function() {
+		glob('./dev/src/**/*.json', function(er, files) {
+			if (!er) {
+				for (var file of files) {
+					gulp.src(file).pipe(copy('./build/src/', {prefix: 4}));
+				}
+			}
+		});
+	});
+
+	gulp.task('src', ['src:markup', 'src:data']);
 
 	gulp.task('src:watch', ['src'], function() {
 		browserSync.reload();
@@ -208,7 +220,7 @@ var plumberErrorHandler = {
     });
 
     gulp.watch('./dev/index.*', ['index:watch']);
-    gulp.watch('./dev/src/+(*.html|*.php)', ['src:watch']);
+    gulp.watch('./dev/src/+(*.html|*.php|*.json)', ['src:watch']);
     gulp.watch('./dev/css/*.css', ['css:watch']);
     gulp.watch('./dev/js/scripts.js', ['js:watch']);
 	});
@@ -216,7 +228,7 @@ var plumberErrorHandler = {
 // ----- watch
 	gulp.task('watch', ['build'], function() {
 		gulp.watch('./dev/index.*', ['index']);
-    gulp.watch('./dev/src/+(*.html|*.php)', ['src']);
+    gulp.watch('./dev/src/+(*.html|*.php|*.json)', ['src']);
     gulp.watch('./dev/css/*.css', ['css']);
     gulp.watch('./dev/js/scripts.js', ['js']);
 	});

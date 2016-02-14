@@ -10,30 +10,18 @@ u {
 	text-decoration: none;
 }
 
-/* ∞∞ content ∞∞ */
-	main {
-		padding: 75px 125px;
-		overflow-x: hidden;
-		overflow-y: scroll;
-		output {
-			display: block;
-			margin-bottom: 10px;
-			&:last-child {
-				display: inline-block;
-				div {
-					animation: blink 750ms infinite;
-					display: inline-block;
-					bg-color: white;
-				}
-			}
-			div {display: none;}
-			&._line {margin-left: 160px}
-		}
-		pre {
+main {
+	size: 100%;
+	padding: 75px 125px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	output {
+		display: block;
+		margin-bottom: 10px;
+		div {display: none;}
+		&._line {margin-left: 160px}
+		&:last-child {
 			display: inline-block;
-			font-family: inherit;
-			font-size: inherit;
-			font-style: inherit;
 			div {
 				animation: blink 750ms infinite;
 				display: inline-block;
@@ -42,27 +30,63 @@ u {
 		}
 	}
 
-	section {
-		size: 0;
-		fixed: top 50% left 50%;
-		opacity: 0;
-		pointer-events: none;
+	pre {
+		display: inline-block;
+		font-family: inherit;
+		font-size: inherit;
+		font-style: inherit;
+		div {
+			animation: blink 750ms infinite;
+			display: inline-block;
+			bg-color: white;
+		}
 	}
+}
+
+form {
+	size: 0;
+	fixed: top 0 left 0;
+	opacity: 0;
+	pointer-events: none;
+}
+
+#switch {
+	transition: width 1250ms cubic-bezier(.4,.25,.3,1.25),
+							border-radius 1000ms cubic-bezier(.4,.25,.3,1.25) 250ms,
+							height 500ms cubic-bezier(.4,.25,.3,1) 750ms,
+							opacity 500ms cubic-bezier(.4,.25,.3,1) 750ms;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: stretch;
+	width: 0;
+	height: 8px;
+	absolute: top 50% left 50%;
+	border-radius: 50%;
+	opacity: .4;
+	transform: translate(-50%,-50%);
+	overflow: hidden;
+	div {
+		height: 1px;
+		background-color: #f7fcf7;
+	}
+	&:--on {
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		border-radius: 0;
+	}
+}
 
 /* ∞∞ keyframes */
-	@keyframes blink {
-  	0% {
-    	opacity: 1;
-  	}
-  	50% {
-  		opacity: 0;
-  	}
-  	100% {
-    	opacity: 1;
-  	}
+@keyframes blink {
+	0% {
+  	opacity: 1;
 	}
-
-/* ∞∞ media queries ∞∞ */
-	@media (max-width:415px) {
-
+	50% {
+		opacity: 0;
 	}
+	100% {
+  	opacity: 1;
+	}
+}
