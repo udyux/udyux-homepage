@@ -131,6 +131,30 @@
 		cursor: pointer;
 	}
 
+	a::before {
+		content: '';
+		transition: all 250ms ease-in-out;
+		width: 104%;
+		height: .2em;
+		border-radius: 1px;
+		position: absolute;
+		bottom: .1em;
+		left: -2%;
+		z-index: -1;
+	}
+
+	a:hover::before {
+		content: '';
+		transition: all 250ms ease-in-out;
+		width: 104%;
+		height: .4em;
+		border-radius: 1px;
+		position: absolute;
+		bottom: 0;
+		left: -2%;
+		z-index: -1;
+	}
+
 	a:active,
 	a:hover {
   	outline: 0;

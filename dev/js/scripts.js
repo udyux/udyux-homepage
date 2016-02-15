@@ -36,6 +36,10 @@ var Bash = (function() {
 					return store.model.newline;
 				}
 			},
+			returnLine: function() {
+				store.n++;
+				return store.model.returnline;
+			},
 			nextChar: function() {
 				var i = store.n;
 				var str = store.text[i];
@@ -66,7 +70,7 @@ var Bash = (function() {
 		};
 
 		var print = function(str) {
-			var keyTime = Random.number(40,100);
+			var keyTime = Random.number(30,90);
 			setTimeout(function() {
 				$('.output').last().append(str);
 				Control.data.parse();
@@ -86,22 +90,24 @@ var Bash = (function() {
 				$('#switch').append('<div></div><div></div>');
 				if (i+1 === n) {
 					$('#switch').addState('on');
-					setTimeout(data.load,1500);
+					setTimeout(data.load,1250);
 				}
 			}
 		};
 
 		var data = {
 			load: function() {
+				$('#shell').append('<output>Initializing <b><em>http://udy.io</em></b><span></span></output>');
 				var initializing = setInterval(function() {
-					$('#shell').append('<output>Initializing <b><em>http://udy.io</em></b><span></span></output>');
 					$('#shell output span').append('.');
 				},250);
 
 				$.getJSON('src/output.json', function(json) {
-					clearInterval(initializing);
-					$('#switch').remove();
-					State.request.model(json);
+					setTimeout(function() {
+						clearInterval(initializing);
+						$('#switch').remove();
+						State.request.model(json);
+					},2000);
 				});
 			},
 			config: function() {
@@ -118,16 +124,24 @@ var Bash = (function() {
 				var nextChar = State.request.nextChar();
 				switch (nextChar) {
 					case ';':
-						var newLine = State.request.newLine();
-						if (!newLine) {
-							State.request.form();
-						} else {
-							Shell.echo(newLine);
-						}
+						setTimeout(function() {
+							var newLine = State.request.newLine();
+							if (!newLine) {
+								State.request.form();
+							} else {
+								Shell.echo(newLine);
+							}
+						},400);
+						break;
+					case '^':
+						var returnLine = State.request.returnLine();
+						Shell.echo(returnLine);
 						break;
 					case '#':
-						var link = State.request.nextLink();
-						Shell.print(link);
+						setTimeout(function() {
+							var link = State.request.nextLink();
+							Shell.print(link);
+						},400);
 						break;
 					default:
 						Shell.print(nextChar);

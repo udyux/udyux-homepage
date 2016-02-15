@@ -21,7 +21,7 @@ main {
 		div {display: none;}
 		&._line {margin-left: 160px}
 		&:last-child {
-			display: inline-block;
+			display: inline;
 			div {
 				animation: blink 750ms infinite;
 				display: inline-block;

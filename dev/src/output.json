@@ -5,14 +5,17 @@
 		"lang": "<output><b></b>Preferred language detected > [ <em>lang</em> = <u>#lang</u> ]</output>"
 	},
 	"newline": "<output><em>Udy-UX</em><b>:~</b>&nbsp;<u>bash$</u>&nbsp;<span class=\"output\"></span><div>&nbsp;</div></output>",
+	"returnline": "<output class=\"_line\"><span class=\"output\"></span><div>&nbsp;</div></output>",
 	"lines": {
 		"en": [
 			"Hello web!;",
 			"My name is Nicolas Udy, a web developer from Québec City, Canada.;",
-			"I'm almost done with school and work as an intern front-end developer for #.;",
+			"I'm currently finishing my studies at CDI College^", 
+			"and work as an intern front-end developer for #.;",
 			"However, I'm never too busy to talk about new projects.;",
 			"You can connect with me on #, # or #.;",
-			"To download my CV type \"cv\" on the next line, or type \"message\" to send me a message.;"
+			"To download my CV type \"cv\" on the next line,^",
+			 "or type \"message\" to send me a message.;"
 		]
 	},
 	"links": [
