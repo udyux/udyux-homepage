@@ -107,7 +107,7 @@ var Bash = (function() {
 						clearInterval(initializing);
 						$('#switch').remove();
 						State.request.model(json);
-					},2000);
+					},1750);
 				});
 			},
 			config: function() {
@@ -115,9 +115,16 @@ var Bash = (function() {
 					var connection = State.request.connection();
 					var uaLang = State.request.uaLang(lang);
 					var newLine = State.request.newLine();
-					$('#shell').append(connection);
-					$('#shell').append(uaLang);
-					Shell.echo(newLine);
+					$('#shell').append(connection[0]);
+					setTimeout(function() {
+						$('#shell').append(connection[1]);
+						setTimeout(function() {
+							$('#shell').append(uaLang + '<br/>');
+							setTimeout(function() {
+								Shell.echo(newLine);
+							},750);
+						},500);
+					},750);
 				});
 			},
 			parse: function() {

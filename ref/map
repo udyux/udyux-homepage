@@ -1,0 +1,96 @@
+Bash object map
+	
+	(State) * {{request}}
+		{store}
+		{request}
+			(model)
+			| < 'model' < (Control.data.load)
+			| + {store.model}
+			| + 'store.n'
+			| + 'store.link'
+			| + 'store.form'
+			| > (Control.data.config)
+
+			(connection)
+			| return ['store.model.connection.established', 'store.model.connection.last']
+
+			(uaLang)
+			| < 'lang' < 
+			| + 'store.text'
+			| return 'store.model.connection.lang'
+
+			(newLine)
+			| ~ 'store.n'
+			| return false || 'store.model.newline'
+
+			(returnLine)
+			| ~ 'store.n'
+			| return 'store.model.returnline'
+
+			(nextChar)
+			| ~ 'store.text'
+			| return 'store.text'
+
+			(nextLink)
+			| ~ 'store.link'
+			| return 'store.link'
+			
+			(form)
+			| > ['store.model.forms'] > (Control.data.forms)
+		–
+	–
+
+
+	(Shell) * {(echo) (print)}
+		(echo)
+		| < 'string' < (Control.data.parse)
+		| -(append to shell)
+		| > (Control.data.parse)
+
+		(print)
+		| < 'letter' || 'link' < (Control.data.parse)
+		| -(append to output)
+		| >	(Control.data.parse)
+	–
+
+
+	(Control) * {{data}}
+		(launch)
+		| > (data.load)
+
+		{data}
+			(load)
+			| -(get json)
+			| > 'json' > (State.request.model)
+
+			(config)
+			| -(get lang)
+			| < (State.request.connection)
+			| > 'lang' > (State.request.uaLang)
+			| > 'string' > (Shell.echo)
+			
+			(parse)
+			| < 'nextChar' < (State.request.nextChar)
+				{switch}
+				(case) 
+				| < 'newLine' < (State.request.newLine)
+				| false > (State.request.form)
+				| true > 'newline' > (Shell.echo)
+				
+				(case)
+				| < 'returnLine' < (State.request.returnLine)
+				| > 'returnline' > (Shell.echo)
+				
+				(case)
+				| < 'link' < (State.request.nextLink)
+				| > 'link' > (Shell.print)
+				
+				(default)
+				| > 'nextChar' (Shell.print)
+			
+			(forms)
+			| < 'forms' < (State.request.form)
+			| -(append forms)
+		–
+	–
+–
