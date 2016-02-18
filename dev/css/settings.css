@@ -22,7 +22,7 @@
 	/*
 //
 /**/body{typeface: light 18px}
-		p {line-height: 1.75}
+		output {line-height: 1.3}
 		b {font-family: bold}
 		a::before {bg-color: wedgewood}
  	/*

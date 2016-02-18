@@ -1,11 +1,11 @@
 {
 	"connection": {
-		"established": "<output><u>Connection established</u> <a href=\"mailto:nicolas@udy.io\">nicolas@udy.io</a></output>",
+		"established": "<output><u>Connection established</u> <<a href=\"mailto:nicolas@udy.io\">nicolas@udy.io</a>></output>",
 		"last": "<output>Last connection: <b>#date</b> on <b>#ua</b></output>",
-		"lang": "<output><b></b>Preferred language detected > [ <em>lang</em> = <u>#lang</u> ]</output>"
+		"lang": "<output><b></b>Preferred language [ <em>lang</em> = <u>#lang</u> ]</output>"
 	},
-	"newline": "<output><em>Udy-UX</em><b>:~</b>&nbsp;<u>bash$</u>&nbsp;<span class=\"output\"></span><div>&nbsp;</div></output>",
-	"returnline": "<output class=\"_line\"><span class=\"output\"></span><div>&nbsp;</div></output>",
+	"newline": "<output><span><em>Udy-UX</em><b>:~</b>&nbsp;<u>bash$</u>&nbsp;</span><span class=\"output\"></span><div></div></output>",
+	"returnline": "<output><span></span><span class=\"output\"></span><div></div></output>",
 	"lines": {
 		"en": [
 			"Hello web!;",
@@ -14,12 +14,14 @@
 			"and work as an intern front-end developer for #.;",
 			"However, I'm never too busy to talk about new projects.;",
 			"You can connect with me on #, # or #.;",
-			"To download my CV type \"cv\" on the next line,^",
-			 "or type \"message\" to send me a message.;"
+			"For more, type in one of the commands below and hit return/enter^",
+			"\"cv\" - to download my CV^",
+			"\"more\" - for more contact info^",
+			"\"message\" - to send me a message;"
 		]
 	},
 	"links": [
-		"<a href=\"http://quebecnumerique.com\" target=\"_blank\">Québec Numérique</a>",
+		"<a href=\"http://www.quebecnumerique.com\" target=\"_blank\">Québec Numérique</a>",
 		"<a href=\"http://codepen.io/udyux/\" target=\"_blank\">CodePen</a>",
 		"<a href=\"https://github.com/udyux\" target=\"_blank\">GitHub</a>",
 		"<a href=\"https://ca.linkedin.com/in/udyux\" target=\"_blank\">LinkedIn</a>"
@@ -30,5 +32,12 @@
 		"<form><input type=\"text\" id=\"name\" class=\"contact\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\"/><button></button></form>",
 		"<form><input type=\"text\" id=\"subject\" class=\"contact\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\"/><button></button></form>",
 		"<form><textarea id=\"msg\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\"></textarea></form>"
+	],
+	"inputs": [
+		"<output><span></span><label for=\"command\"><pre></pre></label><div></div></output>",
+		"<output><span></span><label for=\"email\"><pre></pre></label><div></div></output>",
+		"<output><span></span><label for=\"name\"><pre></pre></label><div></div></output>",
+		"<output><span></span><label for=\"subject\"><pre></pre></label><div></div></output>",
+		"<output><span></span><label for=\"msg\"><pre></pre></label><div></div></output>"
 	]
 }

@@ -2,6 +2,7 @@
 |  scripts.js  |
 ∞-------------*/
 
+require Browser.js
 require Prevent.js
 
 var Bash = (function() {
@@ -13,12 +14,12 @@ var Bash = (function() {
 				store.model = model;
 				store.n = -1;
 				store.link = 0;
-				store.form = 0;
+				store.input = 0;
 				Control.data.config();
 			},
 			connection: function() {
 				var now = new Date();
-				var ua = navigator.userAgent.split('/')[3].split(' ')[1];
+				var ua = Browser.ua;
 				var last = store.model.connection.last.replace(/#date/, now);
 				var lastConnection = last.replace(/#ua/, ua);
 				return [store.model.connection.established, lastConnection];
@@ -53,8 +54,7 @@ var Bash = (function() {
 				return store.model.links[i];
 			},
 			form: function() {
-				var forms = store.model.forms;
-				Control.data.forms(forms);
+				return store.model.forms;
 			}
 		};
 
@@ -64,13 +64,13 @@ var Bash = (function() {
 	})();
 
 	var Shell = (function() {
-		var echo = function(str) {
+		var echo = function(str, callback) {
 			$('#shell').append(str);
-			Control.data.parse();
+			var dispatch = (!callback) ? Control.data.parse() : callback();
 		};
 
 		var print = function(str) {
-			var keyTime = Random.number(30,90);
+			var keyTime = Random.number(40,90);
 			setTimeout(function() {
 				$('.output').last().append(str);
 				Control.data.parse();
@@ -134,7 +134,11 @@ var Bash = (function() {
 						setTimeout(function() {
 							var newLine = State.request.newLine();
 							if (!newLine) {
-								State.request.form();
+								var forms = State.request.form();
+								for (i = 0; i < forms.length; i++) {
+									var callback = (i+1 === forms.length) ? $.noop : Control.data.inputs;
+									Shell.echo(forms[i], callback);
+								}
 							} else {
 								Shell.echo(newLine);
 							}
@@ -154,11 +158,6 @@ var Bash = (function() {
 						Shell.print(nextChar);
 				}
 				$('html,body').scrollTop($('html,body').prop('scrollHeight'));
-			},
-			forms: function(forms) {
-				for (i = 0; i < forms.length; i++) {
-					$('body').append(forms[i]);
-				}
 			}
 		};
 

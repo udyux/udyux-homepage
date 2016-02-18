@@ -19,26 +19,31 @@ main {
 		display: block;
 		margin-bottom: 10px;
 		div {display: none;}
-		&._line {margin-left: 160px}
-		&:last-child {
-			display: inline;
+		span:first-of-type {
+			display: inline-block;
+			width: 165px;
+			text-align: right;
+		}
+
+		pre {
+			display: inline-block;
+			font-family: inherit;
+			font-size: inherit;
+			font-style: inherit;
+		}
+
+		&:first-of-type span {text-align: left}
+		&:last-child,
+		&:--live {
+			display: inline-block;
 			div {
-				animation: blink 750ms infinite;
+				size: 8px 1.05em;
+				absolute: top left 100%;
+				margin-left: 2px;
 				display: inline-block;
 				bg-color: white;
+				animation: blink 750ms infinite;
 			}
-		}
-	}
-
-	pre {
-		display: inline-block;
-		font-family: inherit;
-		font-size: inherit;
-		font-style: inherit;
-		div {
-			animation: blink 750ms infinite;
-			display: inline-block;
-			bg-color: white;
 		}
 	}
 }
