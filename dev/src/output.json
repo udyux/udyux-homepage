@@ -1,23 +1,21 @@
 {
 	"connection": {
-		"established": "<output><u>Connection established</u> <<a href=\"mailto:nicolas@udy.io\">nicolas@udy.io</a>></output>",
+		"established": "<output><u>Connection established</u> with <em>Udy-UX</em> <<a href=\"mailto:nicolas@udy.io\">nicolas@udy.io</a>></output>",
 		"last": "<output>Last connection: <b>#date</b> on <b>#ua</b></output>",
-		"lang": "<output><b></b>Preferred language [ <em>lang</em> = <u>#lang</u> ]</output>"
+		"lang": "<output><b></b>Preferred language [<u>#lang</u>]</output>"
 	},
 	"newline": "<output><span><em>Udy-UX</em><b>:~</b>&nbsp;<u>bash$</u>&nbsp;</span><span class=\"output\"></span><div></div></output>",
 	"returnline": "<output><span></span><span class=\"output\"></span><div></div></output>",
 	"lines": {
 		"en": [
 			"Hello web!;",
-			"My name is Nicolas Udy, a web developer from Québec City, Canada.;",
-			"I'm currently finishing my studies at CDI College^", 
-			"and work as an intern front-end developer for #.;",
-			"However, I'm never too busy to talk about new projects.;",
-			"You can connect with me on #, # or #.;",
-			"For more, type in one of the commands below and hit return/enter^",
-			"\"cv\" - to download my CV^",
-			"\"more\" - for more contact info^",
-			"\"message\" - to send me a message;"
+			"My name is Nicolas Udy.;",
+			"I'm a web developer from Québec City, Canada.;",
+			"I'm currently finishing my studies at CDI College and wrapping up my internship as a front-end developer for #.;",
+			"I'm always looking for new challenges and opportunities.;",
+			"Feel free to check out my work on # or the source for this page on #.;",
+			"To get in touch, connect with me on # or just send me a message.;",
+			"Type it in on the next line. When you're done hit \"shift + return/enter\" to continue.;"
 		]
 	},
 	"links": [
@@ -27,17 +25,14 @@
 		"<a href=\"https://ca.linkedin.com/in/udyux\" target=\"_blank\">LinkedIn</a>"
 	],
 	"forms": [
-		"<form><input type=\"text\" id=\"command\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"/><button></button></form>",
-		"<form><input type=\"text\" id=\"email\" class=\"contact\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"/><button></button></form>",
-		"<form><input type=\"text\" id=\"name\" class=\"contact\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\"/><button></button></form>",
-		"<form><input type=\"text\" id=\"subject\" class=\"contact\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\"/><button></button></form>",
-		"<form><textarea id=\"msg\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\"></textarea></form>"
+		"<form><textarea id=\"msg\" class=\"form\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\"></textarea><button></button></form>",
+		"<form><input type=\"text\" id=\"name\" class=\"form\" autocomplete=\"off\" autocorrect=\"off\" spellcheck=\"false\"/><button></button></form>",
+		"<form><input type=\"text\" id=\"email\" class=\"form\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"/><button></button></form>"
 	],
 	"inputs": [
-		"<output><span></span><label for=\"command\"><pre></pre></label><div></div></output>",
-		"<output><span></span><label for=\"email\"><pre></pre></label><div></div></output>",
-		"<output><span></span><label for=\"name\"><pre></pre></label><div></div></output>",
-		"<output><span></span><label for=\"subject\"><pre></pre></label><div></div></output>",
-		"<output><span></span><label for=\"msg\"><pre></pre></label><div></div></output>"
-	]
+		"<output><span class=\"sm\">msg >&nbsp;</span><label for=\"msg\"><pre></pre><div></div></label></output>",
+		"<output><span class=\"sm\">name >&nbsp;</span><label for=\"name\"><pre></pre><div></div></label></output>",
+		"<output><span class=\"sm\">email >&nbsp;</span><label for=\"email\"><pre></pre><div></div></label></output>"
+	],
+	"end": "<output><span><em>Udy-UX</em><b>:~</b>&nbsp;<u>bash$</u>&nbsp;</span><span>Your message has been sent, I'll get back to you shortly!</span></output>"
 }

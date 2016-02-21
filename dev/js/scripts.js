@@ -53,8 +53,16 @@ var Bash = (function() {
 				store.link++;
 				return store.model.links[i];
 			},
-			form: function() {
-				return store.model.forms;
+			input: function() {
+				var i = store.input;
+				var input = (i === store.model.inputs.length) ? false : store.model.forms[i] + store.model.inputs[i];
+				store.input++;
+				console.log('length: ' + store.model.inputs.length);
+				console.log('passed: ' + store.input);
+				return input;
+			},
+			end: function() {
+				return store.model.end;
 			}
 		};
 
@@ -64,9 +72,10 @@ var Bash = (function() {
 	})();
 
 	var Shell = (function() {
-		var echo = function(str, callback) {
+		var echo = function(str, form) {
 			$('#shell').append(str);
-			var dispatch = (!callback) ? Control.data.parse() : callback();
+			var act = (!form) ? Control.data.parse() : $('.form').last().focus();
+			$('main').scrollTop($('main').prop('scrollHeight'));
 		};
 
 		var print = function(str) {
@@ -74,12 +83,27 @@ var Bash = (function() {
 			setTimeout(function() {
 				$('.output').last().append(str);
 				Control.data.parse();
+				$('main').scrollTop($('main').prop('scrollHeight'));
 			},keyTime);
+		};
+
+		var mirror = function(e) {
+			var val = $(this).val();
+			var rel = $('[for="' + $(this).prop('id') + '"] pre');
+			if (e.which === 9) {
+				return false;
+			} else if (e.which === 13 && e.shiftKey && $(this).is('textarea')) {
+				$(this).siblings('button').click();
+			} else {
+				rel.text(val);
+				$('main').scrollTop($('main').prop('scrollHeight'));
+			}
 		};
 
 		return {
 			echo: echo,
-			print: print
+			print: print,
+			mirror: mirror
 		};
 	})();
 
@@ -134,30 +158,38 @@ var Bash = (function() {
 						setTimeout(function() {
 							var newLine = State.request.newLine();
 							if (!newLine) {
-								var forms = State.request.form();
-								for (i = 0; i < forms.length; i++) {
-									var callback = (i+1 === forms.length) ? $.noop : Control.data.inputs;
-									Shell.echo(forms[i], callback);
-								}
+								Input.init();
 							} else {
 								Shell.echo(newLine);
 							}
-						},400);
-						break;
-					case '^':
-						var returnLine = State.request.returnLine();
-						Shell.echo(returnLine);
+						},300);
 						break;
 					case '#':
 						setTimeout(function() {
 							var link = State.request.nextLink();
 							Shell.print(link);
-						},400);
+						},125);
 						break;
 					default:
 						Shell.print(nextChar);
 				}
-				$('html,body').scrollTop($('html,body').prop('scrollHeight'));
+			},
+			send: function() {
+				$.ajax({
+					url: 'lib/php/mailer.php',
+					type: 'POST',
+					data: {
+						sender: $('#name').val(),
+						reply: $('#email').val(),
+						message: $('#msg').val()
+					}
+				})
+				.done(function() {
+					var end = State.request.end();
+					Shell.echo(end, true);
+					$('.form').last().blur();
+					$('#shell').removeClass('ready');
+				});
 			}
 		};
 
@@ -165,6 +197,41 @@ var Bash = (function() {
 
 		return {
 			data: data
+		};
+	})();
+
+	var Input = (function() {
+		var next = function() {
+			var input = State.request.input();
+			if (input) {
+				Shell.echo(input, true);
+			} else {
+				Control.data.send();
+			}
+		};
+
+		var focused = function() {
+			if ($('#shell').hasClass('ready')) {
+				$('.form').last().focus();
+				$('#shell').removeClass('ready');
+			}
+		};
+
+		var blurred = function() {
+			$('#shell').addClass('ready');
+		};
+
+		var init = function() {
+			var input = State.request.input();
+			Shell.echo(input, true);
+			$(document).on('keyup','input, textarea',Shell.mirror);
+			$(document).on('keydown',focused);
+			$(document).on('blur','input,textarea',blurred);
+			$(document).on('click','button',next);
+		};
+
+		return {
+			init: init
 		};
 	})();
 })();

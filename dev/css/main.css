@@ -15,21 +15,31 @@ main {
 	padding: 75px 125px;
 	overflow-x: hidden;
 	overflow-y: scroll;
+	@media (--sm) {padding: 25px}
 	output {
 		display: block;
-		margin-bottom: 10px;
+		padding-bottom: 10px;
 		div {display: none;}
 		span:first-of-type {
 			display: inline-block;
 			width: 165px;
 			text-align: right;
+			&.sm {width: 90px}
 		}
 
-		pre {
+		a {white-space: nowrap}
+
+		label {
 			display: inline-block;
 			font-family: inherit;
 			font-size: inherit;
 			font-style: inherit;
+			pre {
+				display: inline;
+				font-family: inherit;
+				font-size: inherit;
+				font-style: inherit;
+			}
 		}
 
 		&:first-of-type span {text-align: left}
@@ -37,8 +47,8 @@ main {
 		&:--live {
 			display: inline-block;
 			div {
-				size: 8px 1.05em;
-				absolute: top left 100%;
+				size: 12px 1.05em;
+				position: static;
 				margin-left: 2px;
 				display: inline-block;
 				bg-color: white;
