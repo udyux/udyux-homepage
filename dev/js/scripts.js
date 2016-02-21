@@ -57,8 +57,6 @@ var Bash = (function() {
 				var i = store.input;
 				var input = (i === store.model.inputs.length) ? false : store.model.forms[i] + store.model.inputs[i];
 				store.input++;
-				console.log('length: ' + store.model.inputs.length);
-				console.log('passed: ' + store.input);
 				return input;
 			},
 			end: function() {
