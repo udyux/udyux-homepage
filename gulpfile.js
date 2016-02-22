@@ -107,7 +107,7 @@ var plumberErrorHandler = {
 		return gulp.src('./dev/data/*.json')
 			.pipe(inject.afterEach('<i>', '<svg class="icon"><use xlink:href="assets/icons.svg#'))
 			.pipe(inject.beforeEach('</i>', '"></use></svg>'))
-			.pipe(gulp.dest('./build/src/'));
+			.pipe(gulp.dest('./build/data/'));
 	});
 
 	gulp.task('data:watch', ['src'], function() {
