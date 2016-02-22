@@ -223,7 +223,7 @@ var plumberErrorHandler = {
 // ----- watch
 	gulp.task('watch', ['build'], function() {
 		gulp.watch('./dev/index.*', ['index']);
-    gulp.watch('./dev/src/*.json', ['data']);
+    gulp.watch('./dev/data/*.json', ['data']);
     gulp.watch('./dev/css/*.css', ['css']);
     gulp.watch('./dev/js/scripts.js', ['js']);
     gulp.watch('./dev/lib/**/*.js', ['js']);

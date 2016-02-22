@@ -124,7 +124,7 @@ var Bash = (function() {
 					$('#shell output span').append('.');
 				},250);
 
-				$.getJSON('src/output.json', function(json) {
+				$.getJSON('data/output.json', function(json) {
 					setTimeout(function() {
 						clearInterval(initializing);
 						$('#switch').remove();
