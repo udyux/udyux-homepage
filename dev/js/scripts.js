@@ -26,7 +26,7 @@ var Bash = (function() {
 			},
 			uaLang: function(lang) {
 				var prefLang = store.model.connection.lang.replace(/#lang/, lang);
-				store.text = store.model.lines[lang];
+				store.text = store.model.lines.en;
 				return prefLang;
 			},
 			newLine: function() {
