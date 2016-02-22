@@ -1,7 +1,7 @@
 {
 	"connection": {
 		"established": "<output><u>Connection established</u> with <em>Udy-UX</em> <<a href=\"mailto:nicolas@udy.io\">nicolas@udy.io</a>></output>",
-		"last": "<output>Last connection: <b>#date</b> on <b>#ua</b></output>",
+		"last": "<output>Last connection: <b>#date</b> using <b>#ua</b></output>",
 		"lang": "<output><b></b>Preferred language [<u>#lang</u>]</output>"
 	},
 	"newline": "<output><span><em>Udy-UX</em><b>:~</b>&nbsp;<u>bash$</u>&nbsp;</span><span class=\"output\"></span><div></div></output>",
